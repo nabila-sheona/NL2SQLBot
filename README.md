@@ -255,7 +255,7 @@ SQL_Assistant/
 4. **Ask questions naturally**
 5. **Close browser when done**
 
-**No need to reconnect** - your database and model settings are saved!
+**No need to reconnect** - your database and model settings are INSTALLED!
 
 ---
 
