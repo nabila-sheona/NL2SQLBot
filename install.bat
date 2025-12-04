@@ -165,14 +165,7 @@ echo [5/5] Creating folders...
 if not exist "config" mkdir config
 if not exist "schemas" mkdir schemas
 
-echo.
-echo ========================================
-echo    INSTALLATION COMPLETE!
-echo ========================================
-echo.
-echo ✅ Python environment ready
-echo ✅ Dependencies installed
-echo ✅ Folders created
+
 echo.
 echo ========================================
 echo    REQUIRED BEFORE FIRST USE:
@@ -188,25 +181,6 @@ echo.
 echo 3. Install Ollama
 echo    https://ollama.ai/download
 echo    Command: ollama pull deepseek-coder:6.7b
-echo.
-echo ========================================
-echo    EXAMPLE FEW-SHOT FILE FORMAT:
-echo ========================================
-echo Create examples\your_few_shot.json with:
-echo {
-echo   "few_shot_examples": [
-echo     {
-echo       "question": "Your question about YOUR database",
-echo       "sql": "SELECT columns FROM your_tables;"
-echo     }
-echo   ]
-echo }
-echo.
-echo ========================================
-echo.
-echo To start the application: Double-click start.bat
-echo.
-echo ⚠️ IMPORTANT: You MUST upload your own few-shot examples
-echo    before using the application!
-echo.
+
+
 pause
