@@ -5,11 +5,9 @@ SQL Assistant is an intelligent chatbot that allows you to query your SQL Server
 ---
 
 ## Workflow
+<img width="1105" height="648" alt="SQL Assistant Application - Detailed Code Workflow Report - visual selection" src="https://github.com/user-attachments/assets/e4ef695e-c586-41ae-92a5-29516404743c" />
 
-![SQL Assistant Application - Detailed Code Workflow Report - visual selection.png](attachment:3a8fd904-2c04-45ae-b7f0-4c1dfd67276c:SQL_Assistant_Application_-_Detailed_Code_Workflow_Report_-_visual_selection.png)
-
-> *figures are not finalized
-> 
+### *figure not finalized 
 
 ## Quick Start Guide
 
