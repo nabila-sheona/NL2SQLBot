@@ -1,9 +1,12 @@
 ## Overview
 
 SQL Assistant is an intelligent chatbot that allows you to query your SQL Server databases using plain English. No SQL knowledge required! Simply ask questions in natural language, and the AI will generate the correct SQL queries, execute them, and provide easy-to-understand results.(Fulll code will be available soon)
+<img width="870" height="823" alt="image" src="https://github.com/user-attachments/assets/f2007960-b072-44ed-be54-018ab5bb3d60" />
 
 ---
-
+##Workflow
+<img width="1831" height="788" alt="image" src="https://github.com/user-attachments/assets/2c90a58b-42e9-4a8b-b043-4cfabdf2df1a" />
+*figures are not finalized
 ## Quick Start Guide
 
 ### 1. **Download & Install**
