@@ -117,8 +117,8 @@ SQL Assistant is an intelligent chatbot that allows you to query your SQL Server
           "sql": "SELECT SUM(SalesAmount) as TotalSales FROM FactSales WHERE OrderDate >= DATEADD(month, -1, GETDATE())"
         },
         {
-          "question": "top 10 customers by purchases",
-          "sql": "SELECT TOP 10 CustomerName, SUM(OrderTotal) as TotalSpent FROM Customers JOIN Orders ON Customers.CustomerID = Orders.CustomerID GROUP BY CustomerName ORDER BY TotalSpent DESC"
+          "question": "**********************************************",
+          "sql": "************************************************"
         }
       ]
     }
@@ -179,7 +179,7 @@ Once all three are connected (Database , Model, Examples ), you can:
 - **For local models**: Use `sqlcoder:7b` or `sqlcoder:15b`
 - **For cloud models**: Use smaller models like `deepseek-coder:6.7b`
 - **For complex reasoning and faster query**: Use `deepseek-v3.1:671b-cloud`
-- For storage concern and speed: Use  `gpt-oss:20b-cloud`
+- **For storage concern and speed(NOT RELIABLE)**: Use  `gpt-oss:20b-cloud`
 
 `- **Note: Cloud models send prompts to external servers - check your data security policies**`
 
@@ -189,18 +189,6 @@ Once all three are connected (Database , Model, Examples ), you can:
 2. **Subsequent queries are faster** - model stays in memory
 3. **Close other applications** if experiencing slowdowns
 4. **Restart Ollama** if responses become slow
-
----
-
-## Sample Questions to Try
-
-Start with these to test your setup:
-
-1. **Simple**: "count of records in employees table"
-2. **Aggregation**: "average order value"
-3. **Filtering**: "orders placed in January"
-4. **Joins**: "customers with their latest order"
-5. **Grouping**: "sales by product category"
 
 ---
 
@@ -288,7 +276,6 @@ SQL_Assistant/
 ### **Performance Issues?**
 
 - Try a smaller AI model
-- Reduce number of few-shot examples
 - Close other applications
 - Use cloud models for faster query
 
