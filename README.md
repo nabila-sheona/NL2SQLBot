@@ -1,12 +1,16 @@
 ## Overview
 
-SQL Assistant is an intelligent chatbot that allows you to query your SQL Server databases using plain English. No SQL knowledge required! Simply ask questions in natural language, and the AI will generate the correct SQL queries, execute them, and provide easy-to-understand results.(Full code will be available soon)
+SQL Assistant is an intelligent chatbot that allows you to query your SQL Server databases using plain English. No SQL knowledge required! Simply ask questions in natural language, and the AI will generate the correct SQL queries, execute them, and provide easy-to-understand results.
 
 ---
-##Workflow
-<img width="1105" height="648" alt="SQL Assistant Application - Detailed Code Workflow Report - visual selection" src="https://github.com/user-attachments/assets/fa715919-d491-4c58-a508-32c48e4fb445" />
 
-*figures are not finalized
+## Workflow
+
+![SQL Assistant Application - Detailed Code Workflow Report - visual selection.png](attachment:3a8fd904-2c04-45ae-b7f0-4c1dfd67276c:SQL_Assistant_Application_-_Detailed_Code_Workflow_Report_-_visual_selection.png)
+
+> *figures are not finalized
+> 
+
 ## Quick Start Guide
 
 ### 1. **Download & Install**
@@ -156,104 +160,6 @@ Once all three are connected (Database , Model, Examples ), you can:
 2. **Cover Common Questions**: Include examples for frequent queries
 3. **Show Variety**: Different question styles, different SQL patterns
 
-### **Example Structure:**
-
-```json
-{
-  "few_shot_examples": [
-    {
-      "question": "[YOUR ACTUAL QUESTION]",
-      "sql": "[CORRECT SQL FOR YOUR DATABASE]"
-    }
-  ]
-}
-
-```
-
-### **What to Include in Your Examples:**
-
-### **1. Basic Queries**
-
-```json
-{
-  "question": "how many customers do we have",
-  "sql": "SELECT COUNT(*) as CustomerCount FROM Customers"
-}
-
-```
-
-### **2. Aggregation Examples**
-
-```json
-{
-  "question": "total revenue this year",
-  "sql": "SELECT SUM(Revenue) as TotalRevenue FROM Sales WHERE YEAR(SaleDate) = YEAR(GETDATE())"
-}
-
-```
-
-### **3. JOIN Patterns**
-
-```json
-{
-  "question": "products sold with customer names",
-  "sql": "SELECT c.CustomerName, p.ProductName, s.Quantity FROM Sales s JOIN Customers c ON s.CustomerID = c.CustomerID JOIN Products p ON s.ProductID = p.ProductID"
-}
-
-```
-
-### **4. Date Filtering**
-
-```json
-{
-  "question": "sales last quarter",
-  "sql": "SELECT * FROM Sales WHERE SaleDate >= DATEADD(quarter, -1, GETDATE())"
-}
-
-```
-
-### **5. Sorting & Limits**
-
-```json
-{
-  "question": "top 5 performing products",
-  "sql": "SELECT TOP 5 ProductName, SUM(Quantity) as TotalSold FROM Sales GROUP BY ProductName ORDER BY TotalSold DESC"
-}
-
-```
-
-### **Template for Different Industries:**
-
-### **Sales Database:**
-
-```json
-{
-  "question": "monthly sales trend 2024",
-  "sql": "SELECT FORMAT(SaleDate, 'yyyy-MM') as Month, SUM(Amount) as MonthlySales FROM Sales WHERE YEAR(SaleDate) = 2024 GROUP BY FORMAT(SaleDate, 'yyyy-MM') ORDER BY Month"
-}
-
-```
-
-### **HR Database:**
-
-```json
-{
-  "question": "employees by department",
-  "sql": "SELECT Department, COUNT(*) as EmployeeCount FROM Employees GROUP BY Department ORDER BY EmployeeCount DESC"
-}
-
-```
-
-### **Inventory Database:**
-
-```json
-{
-  "question": "low stock items",
-  "sql": "SELECT ProductName, CurrentStock FROM Inventory WHERE CurrentStock < ReorderLevel"
-}
-
-```
-
 ---
 
 ## Pro Tips for Best Results
@@ -272,9 +178,12 @@ Once all three are connected (Database , Model, Examples ), you can:
 
 ### **AI Model Selection:**
 
-- **For accuracy**: Use `sqlcoder:7b` or `sqlcoder:15b`
-- **For speed**: Use smaller models like `deepseek-coder:6.7b`
-- **For complex reasoning**: Use `deepseek-v3.1:671b-cloud`
+- **For local models**: Use `sqlcoder:7b` or `sqlcoder:15b`
+- **For cloud models**: Use smaller models like `deepseek-coder:6.7b`
+- **For complex reasoning and faster query**: Use `deepseek-v3.1:671b-cloud`
+- For storage concern and speed: Use  `gpt-oss:20b-cloud`
+
+`- **Note: Cloud models send prompts to external servers - check your data security policies**`
 
 ### **Performance Tips:**
 
@@ -392,3 +301,5 @@ SQL_Assistant/
 You're now ready to query databases with natural language! Start with simple questions, build up your few-shot examples based on actual use, and enjoy instant data insights without writing SQL.
 
 **Remember**: The AI learns from your examples - better examples = better results!
+
+---
