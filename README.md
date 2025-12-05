@@ -288,3 +288,100 @@ You're now ready to query databases with natural language! Start with simple que
 **Remember**: The AI learns from your examples - better examples = better results!
 
 ---
+
+# Version 2 Updates
+
+## Major Enhancements
+
+### **1. Intelligent Visualizations (Power BI-Style)**
+
+The system now automatically generates interactive charts for your query results:
+
+- **Smart Chart Detection**: Automatically determines the best visualization type based on your data
+- **Always 4 Visualizations**: Guarantees at least 4 charts (padded if needed) for consistent layout
+- **Power BI-Inspired Designs**:
+  - **Donut Charts** for category distributions
+  - **Waterfall Charts** for cumulative analysis
+  - **Treemaps & Sunbursts** for hierarchical data
+  - **Correlation Matrices** with heatmap styling
+  - **Stacked/Clustered Bars** for multi-variable comparison
+- **Auto-Sizing**: Charts automatically adjust to container size with responsive layouts
+- **Professional Styling**: Clean, business-ready visualizations with proper labels and formatting
+
+### **2. Enhanced Connection Management**
+
+- **Persistent Connections**: Database and model connections are maintained across sessions
+- **Two Connection Methods**:
+  1. **Connection String** (Recommended for experts)
+  2. **Individual Fields** (Simplified for beginners)
+- **Flexible Authentication**:
+  - Windows Authentication
+  - SQL Server Authentication
+- **Smart Reconnection**: Automatic detection of connection issues with clear error messages
+
+### **3. Improved AI Query Generation**
+
+- **Enhanced Few-Shot Learning**: Better example matching and context understanding
+- **Vector Database Integration**: Faster table/column discovery using semantic search
+- **Schema Caching**: Reduced load times for frequently accessed databases
+- **Intelligent Reasoning**: AI now explains its thought process for each query
+
+
+## Visual Interface Updates
+
+### **New Tabbed Interface**
+- **New Query Tab**: Main query interface with all features
+- **Query History Tab**: Browse and analyze previous queries
+
+
+
+### **Enhanced Visualization Grid**
+- **2x2 Grid Layout**: Always displays 4 charts in a clean grid
+- **Auto-Refresh**: Charts update automatically when new data arrives
+- **Type Indicators**: Each chart shows its type (Bar, Line, Pie, etc.)
+- **Interactive Elements**: Hover for details, click for interactions
+
+
+
+### **Visualization Controls**
+- **Auto-Detect**: System chooses best chart types
+- **Manual Override**: Coming in future updates
+- **Export Options**: Right-click charts to save as PNG
+- **Fullscreen Mode**: Double-click charts to expand
+
+### **Query History Features**
+- **Search History**: Filter by keywords or date ranges
+- **Re-execute**: Run previous queries with current data
+- **Compare Results**: Side-by-side comparison of query outputs
+- **Export History**: Save conversation logs for analysis
+
+## Troubleshooting (Version 2)
+
+### **New Issues & Solutions**
+- **"Visualization Failed"**: Check Plotly installation with `pip show plotly`
+- **"Chart Display Issues"**: Update browser to latest version
+- **"Slow Visualizations"**: Reduce chart complexity in settings
+- **"Memory Warning"**: Close other tabs or reduce dataset size
+
+
+
+---
+
+## Quick Reference: Version 2 vs Version 1
+
+| Feature | Version 1 | Version 2 |
+|---------|-----------|-----------|
+| Visualizations | None | 4+ auto-generated charts |
+| Chart Types | N/A | 15+ Power BI-style charts |
+| Connection Methods | 1 | 2 (String & Fields) |
+| Query History | Basic | Advanced with search |
+| AI Models | Limited | Expanded selection |
+| Performance | Standard | Optimized with caching |
+| Error Handling | Basic | Comprehensive |
+| Export Options | None | Chart images, query logs |
+| System Requirements | Lower | Higher (for visuals) |
+
+---
+
+**Note**: Version 2 maintains backward compatibility with Version 1 configurations and examples. All existing workflows continue to work with enhanced capabilities added on top.
+
