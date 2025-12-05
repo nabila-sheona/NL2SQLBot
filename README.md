@@ -5,7 +5,8 @@ SQL Assistant is an intelligent chatbot that allows you to query your SQL Server
 ---
 
 ## Workflow
-<img width="1105" height="648" alt="SQL Assistant Application - Detailed Code Workflow Report - visual selection" src="https://github.com/user-attachments/assets/e4ef695e-c586-41ae-92a5-29516404743c" />
+<img width="744" height="492" alt="NL2SQLBot_ Democratizing Data Access with AI-Powered Natural Language to SQL - visual selection (1)" src="https://github.com/user-attachments/assets/06d00b07-5d25-4f6c-bcc1-465f204ec804" />
+
 
 ### *figure not finalized 
 
@@ -282,6 +283,7 @@ SQL_Assistant/
 ---
 
 ## Congratulations!
+<img width="924" height="834" alt="NL2SQLBot_ Democratizing Data Access with AI-Powered Natural Language to SQL - visual selection (4)" src="https://github.com/user-attachments/assets/317e02da-9db6-459a-9e42-0a90a2ca03f4" />
 
 You're now ready to query databases with natural language! Start with simple questions, build up your few-shot examples based on actual use, and enjoy instant data insights without writing SQL.
 
@@ -382,6 +384,7 @@ The system now automatically generates interactive charts for your query results
 | System Requirements | Lower | Higher (for visuals) |
 
 ---
+<img width="1009" height="276" alt="NL2SQLBot_ Democratizing Data Access with AI-Powered Natural Language to SQL - visual selection (3)" src="https://github.com/user-attachments/assets/5f4b3abd-f785-480d-abb5-da1ae3120434" />
 
 **Note**: Version 2 maintains backward compatibility with Version 1 configurations and examples. All existing workflows continue to work with enhanced capabilities added on top.
 
