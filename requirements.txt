@@ -1,18 +1,23 @@
-# Core application
+
 gradio==4.19.1
 pandas==2.1.4
 
-# Database connectivity
+
 sqlalchemy==2.0.23
 pyodbc==5.0.1
 
-# AI/ML components
 chromadb==0.4.22
 sentence-transformers==2.7.0
 
-# HTTP requests and utilities
+
 requests==2.31.0
 python-dotenv==1.0.0
 
-# Optional: SQL validation (not required but recommended)
 sqlglot==24.1.0
+
+# Plotly for interactive charts
+plotly==5.18.0
+
+kaleido==0.2.1
+
+numpy==1.24.3
