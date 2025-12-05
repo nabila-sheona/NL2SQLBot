@@ -1,6 +1,6 @@
 @echo off
 echo ========================================
-echo    SQL ASSISTANT - ONE-TIME SETUP
+echo    NL2SQLBot - ONE-TIME SETUP
 echo ========================================
 echo.
 
@@ -164,23 +164,6 @@ echo [5/5] Creating folders...
 
 if not exist "config" mkdir config
 if not exist "schemas" mkdir schemas
-
-
-echo.
-echo ========================================
-echo    REQUIRED BEFORE FIRST USE:
-echo ========================================
-echo.
-echo 1. ⚠️ MUST UPLOAD FEW-SHOT EXAMPLES ⚠️
-echo    - Create a JSON file with your database examples
-echo    - Upload it through the app interface
-echo.
-echo 2. Install SQL Server ODBC Driver 17
-echo    https://go.microsoft.com/fwlink/?linkid=2249006
-echo.
-echo 3. Install Ollama
-echo    https://ollama.ai/download
-echo    Command: ollama pull deepseek-coder:6.7b
 
 
 pause
