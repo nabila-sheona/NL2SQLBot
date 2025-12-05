@@ -280,16 +280,11 @@ SQL_Assistant/
 - Close other applications
 - Use cloud models for faster query
 
----
 
-## Congratulations!
+
+
 <img width="924" height="834" alt="NL2SQLBot_ Democratizing Data Access with AI-Powered Natural Language to SQL - visual selection (4)" src="https://github.com/user-attachments/assets/317e02da-9db6-459a-9e42-0a90a2ca03f4" />
 
-You're now ready to query databases with natural language! Start with simple questions, build up your few-shot examples based on actual use, and enjoy instant data insights without writing SQL.
-
-**Remember**: The AI learns from your examples - better examples = better results!
-
----
 
 # Version 2 Updates
 
