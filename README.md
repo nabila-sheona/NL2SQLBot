@@ -296,12 +296,7 @@ The system now automatically generates interactive charts for your query results
 
 - **Smart Chart Detection**: Automatically determines the best visualization type based on your data
 - **Always 4 Visualizations**: Guarantees at least 4 charts (padded if needed) for consistent layout
-- **Power BI-Inspired Designs**:
-  - **Donut Charts** for category distributions
-  - **Waterfall Charts** for cumulative analysis
-  - **Treemaps & Sunbursts** for hierarchical data
-  - **Correlation Matrices** with heatmap styling
-  - **Stacked/Clustered Bars** for multi-variable comparison
+- **Power BI-Inspired Designs**
 - **Auto-Sizing**: Charts automatically adjust to container size with responsive layouts
 - **Professional Styling**: Clean, business-ready visualizations with proper labels and formatting
 
