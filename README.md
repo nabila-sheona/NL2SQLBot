@@ -10,25 +10,138 @@ SQL Assistant is an intelligent chatbot that allows you to query your SQL Server
 
 ### *figure not finalized 
 
-## Quick Start Guide
+This application follows a multi-stage workflow to convert natural language questions into SQL queries and visualize results. Here's how it works:
 
-### 1. **Download & Install**
+## **1. Initialization Phase**
 
-1. **Download** the production package containing:
-    - `install.bat` - One-time setup installer
-    - `start.bat` - Daily application launcher
-    - `app.py` - Core application
-    - `requirements.txt` - Required Python packages
-2. **Run `install.bat`** (Double-click it)
-    - This will automatically:
-        - Install Python 3.11 if needed
-        - Create a virtual environment
-        - Install all required packages
-        - Set up necessary folders
+- App starts in `__main__` block
+- Loads available LLM models from Ollama (`get_available_models()`)
+- Loads previous chat history from chat_history.json
+- Creates the Gradio UI interface (`create_interface()`)
 
-1. **Complete the prerequisites** (see below) while installation runs
-2. **Run `start.bat`** to launch the application
+## **2. Connection Setup Phase**
 
+**User actions:**
+
+- Selects connection method (Connection String or individual fields)
+- Enters SQL Server details (server name, authentication type)
+- Clicks "Test Connection"
+
+**Behind the scenes:**
+
+- `test_connection()` → validates credentials → stores `SERVER_NAME`, `CURRENT_AUTH_TYPE`
+- `get_available_databases()` → queries SQL Server for all databases
+- Returns list of databases to user
+
+## **3. Database Connection Phase**
+
+**User actions:**
+
+- Selects a database from dropdown
+- Clicks "Connect Database"
+
+**Behind the scenes:**
+
+- `connect_to_database()` executes three optimized steps:
+    1. **Schema Caching** - `load_schema_with_validation()` checks if cached schema is still valid (compares table count, modification date, cache age)
+    2. **Schema Extraction** - If cache invalid, `get_database_schema()` extracts fresh schema (tables, columns, relationships)
+    3. **Vector DB Creation** - `create_or_load_vector_db()` creates embeddings of schema using SentenceTransformer for semantic search
+
+## **4. Few-Shot Examples Upload**
+
+**User actions:**
+
+- Uploads JSON file with example queries
+
+**Behind the scenes:**
+
+- `upload_few_shot_examples()` validates and stores examples in `FEW_SHOT_EXAMPLES` global variable
+- These examples guide the LLM on the desired SQL style
+
+## **5. Model Selection Phase**
+
+**User actions:**
+
+- Selects LLM model from dropdown
+- Clicks "Connect Model"
+
+**Behind the scenes:**
+
+- `connect_model()` stores `LLM_MODEL` globally
+- Validates connection to local Ollama service
+
+## **6. Query Execution Phase (Core Workflow)**
+
+When user submits a question:
+
+```html
+User Question
+↓
+find_relevant_tables()
+→ Vector DB semantic search for related tables (top 5)
+↓
+build_enhanced_sql_prompt()
+→ Combines schema info + few-shot examples + rules
+↓
+query_llm_with_reasoning()
+→ Sends prompt to Ollama LLM
+↓
+extract_sql_and_reasoning()
+→ Parses LLM response for SQL query + reasoning
+↓
+validate_and_sanitize_sql()
+→ Uses SQLGlot to verify valid T-SQL syntax
+→ Blocks dangerous commands (DROP, DELETE, INSERT, etc.)
+↓
+execute_safe_query()
+→ Runs SQL against database via SQLAlchemy
+→ Returns results as DataFrame
+↓
+convert_sql_results_to_nlp()
+→ Uses LLM to summarize results in natural language
+↓
+generate_plotly_visualizations()
+→ Analyzes DataFrame structure (numeric, categorical, datetime columns)
+→ Creates up to 14 chart types (bar, pie, scatter, heatmap, gauge, etc.)
+→ Scores each chart on 5 criteria (data utilization, variety, relevance, complexity, uniqueness)
+→ Returns top 4 scored visualizations
+↓
+add_to_history()
+→ Saves query, response, reasoning, SQL to chat history
+```
+
+## **7. History & Regeneration**
+
+**User actions:**
+
+- Selects previous query from history
+- Optionally regenerates visualizations
+
+**Behind the scenes:**
+
+- `update_history_dropdown()` shows all queries for current database
+- `regenerate_visuals_from_history()` re-executes old SQL and creates fresh charts
+
+## **Key Global State Variables**
+
+```html
+SERVER_NAME              → Current SQL Server
+CURRENT_DB              → Connected database
+CURRENT_DB_ENGINE       → SQLAlchemy connection
+LLM_MODEL               → Selected LLM model
+SCHEMA_INFO             → Database schema details
+VECTOR_DB               → Chroma vector store for semantic search
+FEW_SHOT_EXAMPLES       → User-provided query examples
+CHAT_HISTORY            → All previous interactions
+```
+
+## **Optimization Strategy**
+
+- **Schema Caching**: Avoids expensive re-extraction if database unchanged
+- **Vector DB Caching**: Only recreates embeddings when schema changes
+- **Semantic Search**: Uses vector DB to find relevant tables faster than keyword matching
+
+This creates a complete pipeline from natural language → SQL → results → visualizations!    
 ---
 
 ## Prerequisites (MUST DO BEFORE USING)
@@ -177,10 +290,9 @@ Once all three are connected (Database , Model, Examples ), you can:
 
 ### **AI Model Selection:**
 
-- **For local models**: Use `sqlcoder:7b` or `sqlcoder:15b`
-- **For cloud models**: Use smaller models like `deepseek-coder:6.7b`
-- **For complex reasoning and faster query**: Use `deepseek-v3.1:671b-cloud`
-- **For storage concern and speed(NOT RELIABLE)**: Use  `gpt-oss:20b-cloud`
+- **For local models**: Use `llama:3.2:1b` or `sqlcoder:15b`
+- **For cloud models**: Use smaller models like  `deepseek-v3.1:671b-cloud`
+
 
 `- **Note: Cloud models send prompts to external servers - check your data security policies**`
 
@@ -284,97 +396,4 @@ SQL_Assistant/
 
 
 <img width="924" height="834" alt="NL2SQLBot_ Democratizing Data Access with AI-Powered Natural Language to SQL - visual selection (4)" src="https://github.com/user-attachments/assets/317e02da-9db6-459a-9e42-0a90a2ca03f4" />
-
-
-# Version 2 Updates
-
-## Major Enhancements
-
-### **1. Intelligent Visualizations (Power BI-Style)**
-
-The system now automatically generates interactive charts for your query results:
-
-- **Smart Chart Detection**: Automatically determines the best visualization type based on your data
-- **Always 4 Visualizations**: Guarantees at least 4 charts (padded if needed) for consistent layout
-- **Power BI-Inspired Designs**
-- **Auto-Sizing**: Charts automatically adjust to container size with responsive layouts
-- **Professional Styling**: Clean, business-ready visualizations with proper labels and formatting
-
-### **2. Enhanced Connection Management**
-
-- **Persistent Connections**: Database and model connections are maintained across sessions
-- **Two Connection Methods**:
-  1. **Connection String** (Recommended for experts)
-  2. **Individual Fields** (Simplified for beginners)
-- **Flexible Authentication**:
-  - Windows Authentication
-  - SQL Server Authentication
-- **Smart Reconnection**: Automatic detection of connection issues with clear error messages
-
-### **3. Improved AI Query Generation**
-
-- **Enhanced Few-Shot Learning**: Better example matching and context understanding
-- **Vector Database Integration**: Faster table/column discovery using semantic search
-- **Schema Caching**: Reduced load times for frequently accessed databases
-- **Intelligent Reasoning**: AI now explains its thought process for each query
-
-
-## Visual Interface Updates
-
-### **New Tabbed Interface**
-- **New Query Tab**: Main query interface with all features
-- **Query History Tab**: Browse and analyze previous queries
-
-
-
-### **Enhanced Visualization Grid**
-- **2x2 Grid Layout**: Always displays 4 charts in a clean grid
-- **Auto-Refresh**: Charts update automatically when new data arrives
-- **Type Indicators**: Each chart shows its type (Bar, Line, Pie, etc.)
-- **Interactive Elements**: Hover for details, click for interactions
-
-
-
-### **Visualization Controls**
-- **Auto-Detect**: System chooses best chart types
-- **Manual Override**: Coming in future updates
-- **Export Options**: Right-click charts to save as PNG
-- **Fullscreen Mode**: Double-click charts to expand
-
-### **Query History Features**
-- **Search History**: Filter by keywords or date ranges
-- **Re-execute**: Run previous queries with current data
-- **Compare Results**: Side-by-side comparison of query outputs
-- **Export History**: Save conversation logs for analysis
-
-## Troubleshooting (Version 2)
-
-### **New Issues & Solutions**
-- **"Visualization Failed"**: Check Plotly installation with `pip show plotly`
-- **"Chart Display Issues"**: Update browser to latest version
-- **"Slow Visualizations"**: Reduce chart complexity in settings
-- **"Memory Warning"**: Close other tabs or reduce dataset size
-
-
-
----
-
-## Quick Reference: Version 2 vs Version 1
-
-| Feature | Version 1 | Version 2 |
-|---------|-----------|-----------|
-| Visualizations | None | 4+ auto-generated charts |
-| Chart Types | N/A | 15+ Power BI-style charts |
-| Connection Methods | 1 | 2 (String & Fields) |
-| Query History | Basic | Advanced with search |
-| AI Models | Limited | Expanded selection |
-| Performance | Standard | Optimized with caching |
-| Error Handling | Basic | Comprehensive |
-| Export Options | None | Chart images, query logs |
-| System Requirements | Lower | Higher (for visuals) |
-
----
-<img width="1009" height="276" alt="NL2SQLBot_ Democratizing Data Access with AI-Powered Natural Language to SQL - visual selection (3)" src="https://github.com/user-attachments/assets/5f4b3abd-f785-480d-abb5-da1ae3120434" />
-
-**Note**: Version 2 maintains backward compatibility with Version 1 configurations and examples. All existing workflows continue to work with enhanced capabilities added on top.
 
